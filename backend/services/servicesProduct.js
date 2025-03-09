@@ -16,7 +16,7 @@ export const getAllProduct_sql = async () => {
   try {
     console.log("Exécution de la requête pour récupérer les produits...");
     const { rows } = await query(
-      "SELECT NAME, IMAGE, PRICE FROM public.shop ORDER BY id ASC "
+      "SELECT ID, NAME, IMAGE, PRICE FROM public.shop ORDER BY id ASC "
     );
     // const { rows } = await query("SELECT NAME, IMAGE, PRICE FROM public.shop");
     console.log("Produits récupérés :", rows);

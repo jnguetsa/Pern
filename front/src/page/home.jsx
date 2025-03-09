@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useProductStore } from "../useStoreTheme/storeProduct";
-import ProductCard from "../components/productCard";
+import ProductCard from "../components/productcard";
 
 function Home() {
   const { products, loading, fetchProduct, error } = useProductStore();
@@ -53,17 +53,18 @@ function Home() {
       </div>
       {error && <p className="text-red-500">Error: {error}</p>}
 
-      {loading ? (
+      { loading ? (
         <div className="flex justify-center items-center h-64">
           <div className="loading loading-spinner loading-lg" />
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {
+            products.map(product => <ProductCard key={product.id} product={product} />)
+          }
         </div>
-      )}
+      )
+      }
     </div>
   );
 }
