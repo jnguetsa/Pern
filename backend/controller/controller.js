@@ -12,7 +12,10 @@ export const getAllProducts = async (req, res) => {
     const getProducts = await getAllProduct_sql();
     return res
       .status(200)
-      .json({ message: "list of products : ", getProducts });
+      .json({ 
+          message: "list of products : ", 
+          getProducts 
+      });
   } catch (error) {
     console.log("Erreur lors de la recherche des clients : ", error);
     res
