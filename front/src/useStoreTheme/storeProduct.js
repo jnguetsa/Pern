@@ -14,11 +14,18 @@ export const useProductStore = create((set, get) => ({
     try {
       const response = await axios.get(`${BASE_URL}/api/getAllProducts`);
 
-      set({ products: response.data, error: null });
+      set({ 
+        products: response.data.getProducts, 
+        error: null, 
+        loading: false 
+      });
       console.log("Données reçues...........", response.data);
     } catch (error) {
       console.error(error);
-      set({ error: "Something went wrong" });
+      set({ 
+        error: "Something went wrong", 
+        loading: false 
+      });
     }
   },
 
@@ -26,11 +33,18 @@ export const useProductStore = create((set, get) => ({
     set({ loading: true });
     try {
       await axios.delete(`${BASE_URL}/api/deleteProduct/${id}`);
-      set({ products: get().products.filter((product) => product.id !== id) });
+      set({ 
+        products: get().products.filter((product) => product.id !== id),
+        loading: false,
+        error: null,
+      });
       toast.success("Product deleted successfully");
     } catch (error) {
       console.error(error);
-      set({ error: "Something went wrong" });
+      set({ 
+        error: "Something went wrong", 
+        loading: false 
+      });
       toast.error("Something went wrong");
     }
   },
